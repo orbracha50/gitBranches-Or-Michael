@@ -1,5 +1,5 @@
-
 import { utilService } from './util.service.js'
+import { storageService } from './async-storage.service.js'
 
 export const contactService = {
     query,
@@ -9,33 +9,35 @@ export const contactService = {
     getEmptyContact,
 }
 
-const contacts = _createContacts()
+const STORAGE_KEY = 'contactDB'
+_createContacts()
 
-function query() {
-    return Promise.resolve(contacts)
+function query(filterBy = {}) {
+    if (!filterBy.fullName) filterBy.fullName = ''
+    if (!filterBy.address) filterBy.address = ''
+    const regExpfullName = new RegExp(filterBy.fullName, 'i')
+    const regExpAddress = new RegExp(filterBy.address, 'i')
+    return storageService.query(STORAGE_KEY)
+        .then(contacts => {
+            return contacts.filter(contact =>
+                regExpfullName.test(contact.fullName) &&
+                regExpAddress.test(contact.address)
+            )
+        })
 }
 
 function getById(contactId) {
-    const contact = contacts.find(contact => contact._id === contactId)
-    // pdfService.buildAnimalsPDF(contacts) //pdf bonus
-    if (!contact) return Promise.reject('Contact not found!')
-    return Promise.resolve(contact)
+    return storageService.get(STORAGE_KEY, contactId)
 }
-
 function remove(contactId) {
-    // contacts = contacts.filter(contact => contact._id !== contactId)
-
-    const idx = contacts.findIndex(contact => contact._id === contactId)
-    contacts.splice(idx, 1)
+    // return Promise.reject('Not now!')
+    return storageService.remove(STORAGE_KEY, contactId)
 }
-
 function save(contact) {
     if (contact._id) {
-        const idx = contacts.findIndex(currBug => currBug._id === contact._id)
-        contacts[idx] = { ...contacts[idx], ...contact }
+        return storageService.put(STORAGE_KEY, contact)
     } else {
-        contact._id = utilService.makeId()
-        contacts.unshift(contact)
+        return storageService.post(STORAGE_KEY, contact)
     }
 }
 
@@ -47,26 +49,26 @@ function getEmptyContact() {
     }
 }
 
-function _createContacts(){
-   const contacts = [
-        {
-            fullName: "or bracha",
-            address: "yehud",
+function _createContacts() {
+    const contacts = [{
+            fullName: "Or Bracha",
+            address: "Yehud",
             tel: "1719915173",
             _id: "a101"
         },
         {
-            fullName: "michael spiridonov",
-            address: "lebnon",
+            fullName: "Michael Spiridonov",
+            address: "Lebanon",
             tel: "17915384173",
             _id: "a102"
         },
         {
-            fullName: "avi choen",
-            address: "kiryat ata",
+            fullName: "Avi Choen",
+            address: "Kiryat Ata",
             tel: "17115384173",
             _id: "a103"
         }
     ]
+    utilService.saveToStorage(STORAGE_KEY, contacts)
     return contacts
 }

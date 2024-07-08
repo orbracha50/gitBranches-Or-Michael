@@ -44,7 +44,7 @@ export function ContactEdit() {
             })
     }
     return <section className="contact-edit">
-        <h2>{contactToEdit.id ? 'Edit this contact' : 'Add a new contact'}</h2>
+        <h2>{contactToEdit._id ? 'Edit this contact' : 'Add a new contact'}</h2>
 
         <form onSubmit={onSaveContact}>
             <label htmlFor="fullName">Full Name : </label>

@@ -5,10 +5,12 @@ export const REMOVE_CONTACT = 'REMOVE_CONTACT'
 export const ADD_CONTACT = 'ADD_CONTACT'
 export const UPDATE_CONTACT = 'UPDATE_CONTACT'
 export const SET_IS_LOADING = 'SET_IS_LOADING'
+export const SET_FILTER_BY = 'SET_FILTER_BY'
 export const CONTACT_UNDO = 'CONTACT_UNDO'
 
 const initialState = {
     contacts: [],
+    lastContacts: [],
     isLoading: false,
 }
 
@@ -43,6 +45,11 @@ export function contactReducer(state = initialState, cmd = {}) {
             return {
                 ...state,
                 isLoading: cmd.isLoading
+            }
+        case SET_FILTER_BY:
+            return {
+                ...state,
+                filterBy: { ...state.filterBy, ...cmd.filterBy }
             }
         case CONTACT_UNDO:
             return {
