@@ -41,7 +41,7 @@ function save(contact) {
 
 function getEmptyContact() {
     return {
-        fullname: '',
+        fullName: '',
         address: '',
         tel: '',
     }

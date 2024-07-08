@@ -43,17 +43,16 @@ export function ContactEdit() {
                 showErrorMsg('Cannot save contact')
             })
     }
-
     return <section className="contact-edit">
         <h2>{contactToEdit.id ? 'Edit this contact' : 'Add a new contact'}</h2>
 
         <form onSubmit={onSaveContact}>
-            <label htmlFor="fullname">Full Name : </label>
+            <label htmlFor="fullName">Full Name : </label>
             <input type="text"
-                name="fullname"
-                id="fullname"
+                name="fullName"
+                id="fullName"
                 placeholder="Enter Full name..."
-                value={contactToEdit.fullname}
+                value={contactToEdit.fullName}
                 onChange={handleChange}
             />
             <label htmlFor="address">Address : </label>
