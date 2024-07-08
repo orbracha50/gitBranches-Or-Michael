@@ -2,6 +2,7 @@ export const utilService = {
   makeId,
   loadFromStorage,
   saveToStorage,
+  debounce, 
 }
 
 
@@ -21,4 +22,14 @@ function saveToStorage(key, value) {
 function loadFromStorage(key) {
   const data = localStorage.getItem(key)
   return (data) ? JSON.parse(data) : undefined
+}
+
+function debounce(func, delay) {
+  let timeoutId
+  return (...args) => {
+      clearTimeout(timeoutId)
+      timeoutId = setTimeout(() => {
+          func(...args)
+      }, delay)
+  }
 }

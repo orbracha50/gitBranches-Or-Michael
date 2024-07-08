@@ -12,10 +12,17 @@ export const contactService = {
 const STORAGE_KEY = 'contactDB'
 _createContacts()
 
-function query() {
+function query(filterBy = {}) {
+    if (!filterBy.fullName) filterBy.fullName = ''
+    if (!filterBy.address) filterBy.address = ''
+    const regExpfullName = new RegExp(filterBy.fullName, 'i')
+    const regExpAddress = new RegExp(filterBy.address, 'i')
     return storageService.query(STORAGE_KEY)
         .then(contacts => {
-            return contacts
+            return contacts.filter(contact =>
+                regExpfullName.test(contact.fullName) &&
+                regExpAddress.test(contact.address)
+            )
         })
 }
 
