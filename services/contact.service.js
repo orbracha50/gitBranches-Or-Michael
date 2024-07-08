@@ -34,7 +34,6 @@ function save(contact) {
         contacts[idx] = { ...contacts[idx], ...contact }
     } else {
         contact._id = utilService.makeId()
-        contact.createdAt = Date.now()
         contacts.unshift(contact)
     }
 }
