@@ -13,9 +13,7 @@ export function ContactIndex() {
                 showErrorMsg('Cannot load contacts')
             })
     }, [])
-    console.log(contacts)
     return <section>
         <ContactList contacts={contacts}/>
-        {/* {contacts && contacts.map(contact => <ContactPreview  contact={contact}/>)} */}
     </section>
 }
