@@ -13,4 +13,5 @@
 @import 'cmps/AppFooter.css';
 @import 'cmps/UserMsg.css';
 @import 'cmps/Loader.css';
+@import url(cmps/ContactFilter.css);
 @import url(cmps/ContactList.css);
