@@ -5,7 +5,7 @@ export function ContactList({contacts}){
 
     console.log(contacts)
 
-    return <section>
-        {contacts&& contacts.map(contact => <ContactPreview contact={contact}/> )}
+    return <section className="list" >
+        {contacts&& contacts.map(contact => <ContactPreview key={contact._id} contact={contact}/> )}
     </section>
 }
