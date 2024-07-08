@@ -8,7 +8,7 @@ export function AppHeader() {
             <section>
             <h1>React Contact App</h1>
                 <nav className="app-nav">
-                    <NavLink to="/home">Home</NavLink>
+                    <NavLink to="/">Home</NavLink>
                     <NavLink to="/about">About</NavLink>
                 </nav>
             </section>

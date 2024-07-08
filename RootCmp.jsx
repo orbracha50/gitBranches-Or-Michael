@@ -2,6 +2,7 @@ const Router = ReactRouterDOM.BrowserRouter
 const { Route, Routes } = ReactRouterDOM
 
 import { AppHeader } from "./cmps/AppHeader.jsx"
+import { ContactDetails } from "./pages/ContactDetails.jsx"
 import { Homepage } from "./pages/Homepage.jsx"
 
 export function App() {
@@ -12,6 +13,7 @@ export function App() {
         <main>
           <Routes>
             <Route element={<Homepage />} path={"/"} />
+            <Route element={<ContactDetails />} path={"/contact/:contactId"} />
           </Routes>
         </main>
       </div>
