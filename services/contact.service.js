@@ -7,22 +7,31 @@ export const contactService = {
     remove,
     save,
     getEmptyContact,
+    getDefaultFilter,
 }
 
 const STORAGE_KEY = 'contactDB'
 _createContacts()
 
 function query(filterBy = {}) {
-    if (!filterBy.fullName) filterBy.fullName = ''
-    if (!filterBy.address) filterBy.address = ''
-    const regExpfullName = new RegExp(filterBy.fullName, 'i')
-    const regExpAddress = new RegExp(filterBy.address, 'i')
     return storageService.query(STORAGE_KEY)
         .then(contacts => {
-            return contacts.filter(contact =>
-                regExpfullName.test(contact.fullName) &&
-                regExpAddress.test(contact.address)
-            )
+            if (filterBy.fullName) {
+                const regExp = new RegExp(filterBy.fullName, 'i')
+                contacts = contacts.filter(contact => regExp.test(contact.fullName))
+            }
+            if (filterBy.address) {
+                const regExp = new RegExp(filterBy.address, 'i')
+                contacts = contacts.filter(contact => regExp.test(contact.address))
+            }
+            if (filterBy.sort) {
+                if (filterBy.sort === 'fullName') {
+                    contacts = contacts.sort((a, b) => a.fullName.localeCompare(b.fullName));
+                } else if (filterBy.sort === 'address'){
+                    contacts = contacts.sort((a, b) => a.address.localeCompare(b.address));
+                }
+            }
+            return contacts
         })
 }
 
@@ -49,6 +58,10 @@ function getEmptyContact() {
     }
 }
 
+function getDefaultFilter() {
+    return { fullName: '', address: '', sort: '' }
+}
+
 function _createContacts() {
     const contacts = [{
             fullName: "Or Bracha",
@@ -58,7 +71,7 @@ function _createContacts() {
         },
         {
             fullName: "Michael Spiridonov",
-            address: "Lebanon",
+            address: "Ashkelon",
             tel: "17915384173",
             _id: "a102"
         },

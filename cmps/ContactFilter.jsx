@@ -6,7 +6,7 @@ import { utilService } from "../services/util.service.js"
 export function ContactFilter({ filterBy, onSetFilter }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
-    onSetFilter = useRef(utilService.debounce(onSetFilter))
+    onSetFilter = useRef(utilService.debounce(onSetFilter, 500))
 
     useEffect(() => {
         onSetFilter.current(filterByToEdit)
@@ -40,6 +40,12 @@ export function ContactFilter({ filterBy, onSetFilter }) {
                     onChange={handleChange}
                 />
 
+                <label htmlFor="sort">Sort By:</label>
+                <select value={filterByToEdit.sort} name="sort" onChange={handleChange} id="sort">
+                <option value="">Sort By</option>
+                <option value="fullName">Full Name</option>
+                <option value="address">Address</option>
+            </select>
             </form>
 
         </section>
