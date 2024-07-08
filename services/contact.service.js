@@ -5,7 +5,8 @@ export const contactService = {
     query,
     getById,
     remove,
-    save
+    save,
+    getEmptyContact,
 }
 
 const contacts = _createContacts()
