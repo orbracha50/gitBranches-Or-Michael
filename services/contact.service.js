@@ -1,5 +1,4 @@
 
-import fs from 'fs'
 import { utilService } from './util.service.js'
 
 export const contactService = {
@@ -9,7 +8,7 @@ export const contactService = {
     save
 }
 
-const contacts = utilService.readJsonFile('data/contact.json')
+const contacts = _createContacts()
 
 function query() {
     return Promise.resolve(contacts)
@@ -27,7 +26,6 @@ function remove(contactId) {
 
     const idx = contacts.findIndex(contact => contact._id === contactId)
     contacts.splice(idx, 1)
-    return _savecontactsToFile()
 }
 
 function save(contact) {
@@ -39,19 +37,27 @@ function save(contact) {
         contact.createdAt = Date.now()
         contacts.unshift(contact)
     }
-    return _savecontactsToFile().then(() => contact)
 }
-
-function _savecontactsToFile() {
-    return new Promise((resolve, reject) => {
-        const data = JSON.stringify(contacts, null, 2)
-        fs.writeFile('data/contact.json', data, (err) => {
-            if (err) {
-                
-                return reject(err);
-            }
-            console.log('The file was saved!');
-            resolve()
-        });
-    })
+function _createContacts(){
+   const contacts = [
+        {
+            fullName: "or bracha",
+            address: "yehud",
+            tel: "1719915173",
+            _id: "a101"
+        },
+        {
+            fullName: "michael spiridonov",
+            address: "lebnon",
+            tel: "17915384173",
+            _id: "a102"
+        },
+        {
+            fullName: "avi choen",
+            address: "kiryat ata",
+            tel: "17115384173",
+            _id: "a103"
+        }
+    ]
+    return contacts
 }
