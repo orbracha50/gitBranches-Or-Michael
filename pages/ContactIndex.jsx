@@ -13,7 +13,7 @@ export function ContactIndex() {
                 showErrorMsg('Cannot load contacts')
             })
     }, [])
-    return <section>
+    return <section className="list-container">
         <ContactList contacts={contacts}/>
     </section>
 }
