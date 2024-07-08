@@ -3,7 +3,7 @@ const { Route, Routes } = ReactRouterDOM
 
 import { AppHeader } from "./cmps/AppHeader.jsx"
 import { Homepage } from "./pages/Homepage.jsx"
-
+import { contactIndex } from "./pages/ContactPage.jsx"
 export function App() {
   return (
     <Router>
@@ -12,6 +12,7 @@ export function App() {
         <main>
           <Routes>
             <Route element={<Homepage />} path={"/"} />
+            <Route element={<contactIndex />} path={"/contact"} />
           </Routes>
         </main>
       </div>
