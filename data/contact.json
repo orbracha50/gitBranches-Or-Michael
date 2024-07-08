@@ -1,0 +1,20 @@
+[
+    {
+        "fullName": "or bracha",
+        "address": "yehud",
+        "tel": "1719915173",
+        "_id": "a101"
+    },
+    {
+        "fullName": "michael spiridonov",
+        "address": "lebnon",
+        "tel": "17915384173",
+        "_id": "a102"
+    },
+    {
+        "fullName": "avi choen",
+        "address": "kiryat ata",
+        "tel": "17115384173",
+        "_id": "a103"
+    }
+]
