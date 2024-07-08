@@ -5,8 +5,7 @@ import { store } from "../store.js"
 
 export function loadContacts() {
     store.dispatch({ type: SET_IS_LOADING, isLoading: true })
-    const filterBy = store.getState().contactModule.filterBy
-    return contactService.query(filterBy)
+    return contactService.query()
         .then(contacts => {
             store.dispatch({ type: SET_CONTACTS, contacts })
         })
