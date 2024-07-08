@@ -1,10 +1,10 @@
-const Router = ReactRouterDOM.BrowserRouter
+const Router = ReactRouterDOM.HashRouter
 const { Route, Routes } = ReactRouterDOM
 
 import { AppHeader } from "./cmps/AppHeader.jsx"
 import { ContactDetails } from "./pages/ContactDetails.jsx"
 import { Homepage } from "./pages/Homepage.jsx"
-import { contactIndex } from "./pages/ContactPage.jsx"
+import { ContactIndex } from "./pages/ContactIndex.jsx"
 export function App() {
   return (
     <Router>
@@ -14,7 +14,7 @@ export function App() {
           <Routes>
             <Route element={<Homepage />} path={"/"} />
             <Route element={<ContactDetails />} path={"/contact/:contactId"} />
-            <Route element={<contactIndex />} path={"/contact"} />
+            <Route element={<ContactIndex />} path={"/contact"} />
           </Routes>
         </main>
       </div>
