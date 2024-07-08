@@ -6,7 +6,8 @@ export const contactService = {
     query,
     getById,
     remove,
-    save
+    save,
+    getEmptyContact,
 }
 
 const contacts = utilService.readJsonFile('data/contact.json')
@@ -40,6 +41,14 @@ function save(contact) {
         contacts.unshift(contact)
     }
     return _savecontactsToFile().then(() => contact)
+}
+
+function getEmptyContact() {
+    return {
+        fullname: '',
+        address: '',
+        tel: '',
+    }
 }
 
 function _savecontactsToFile() {
