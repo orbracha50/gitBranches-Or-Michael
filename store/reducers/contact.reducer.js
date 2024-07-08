@@ -1,3 +1,4 @@
+import { contactService } from '../../services/contact.service.js'
 
 //* Contact
 export const SET_CONTACTS = 'SET_CONTACTS'
@@ -12,6 +13,7 @@ const initialState = {
     contacts: [],
     lastContacts: [],
     isLoading: false,
+    filterBy: contactService.getDefaultFilter(),
 }
 
 
