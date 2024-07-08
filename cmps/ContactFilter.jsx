@@ -19,7 +19,7 @@ export function ContactFilter({ filterBy, onSetFilter }) {
     }
 
     return (
-        <section className="contact-filter full main-layout">
+        <section className="contact-filter">
             <h2>Contacts Filter</h2>
             <form >
                 <label htmlFor="fullName">Full Name:</label>
