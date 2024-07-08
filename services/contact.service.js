@@ -38,6 +38,15 @@ function save(contact) {
         contacts.unshift(contact)
     }
 }
+
+function getEmptyContact() {
+    return {
+        fullname: '',
+        address: '',
+        tel: '',
+    }
+}
+
 function _createContacts(){
    const contacts = [
         {
