@@ -5,10 +5,10 @@ import { AppHeader } from "./cmps/AppHeader.jsx"
 import { ContactDetails } from "./pages/ContactDetails.jsx"
 import { Homepage } from "./pages/Homepage.jsx"
 import { ContactIndex } from "./pages/ContactIndex.jsx"
+import { AppFooter } from "./cmps/AppFooter.jsx"
 export function App() {
   return (
     <Router>
-      <div className="app-container">
         <AppHeader />
         <main>
           <Routes>
@@ -17,7 +17,7 @@ export function App() {
             <Route element={<ContactIndex />} path={"/contact"} />
           </Routes>
         </main>
-      </div>
+        <AppFooter />
     </Router>
   )
 }
